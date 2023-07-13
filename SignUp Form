@@ -1,0 +1,43 @@
+import React,{useState} from 'react';
+import './App.css'
+
+export default function App() {
+  const [data,setData] = useState({
+    username : '',
+    email : '',
+    password : '',
+    confirmPassword:'',
+})
+  const {username,email,password,confirmPassword} = data; 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if(password===confirmPassword){ 
+    console.log(data)
+    }
+    else {
+      alert("Check Your Password Once again!")
+    }
+
+  }
+  
+  const changeHandler = (e) => {
+    setData({...data,[e.target.name]:e.target.value})
+  }
+  return (
+    <div>
+    <center>
+      <form onSubmit={submitHandler} >
+        <label for="username">Name : </label>
+        <input type="text" value={username} name="username" onChange={changeHandler} /><br /><br/>
+        <label for="email">Email : </label>
+        <input type="text" value={email} name="email" onChange={changeHandler} /><br /><br/>
+        <label for="password">Password : </label>
+        <input type="password" value={password} name="password" onChange={changeHandler} /><br/><br/>
+        <label for="confirmPassword">Password Re-Enter : </label>
+        <input type="text" value={confirmPassword} name="confirmPassword" onChange={changeHandler} /><br /><br/>
+        <input type="submit" value="submit" />    
+       </form>
+       </center>
+    </div>
+  )
+}
